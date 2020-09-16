@@ -31,7 +31,7 @@ import {inject, Ref} from 'vue';
 export default {
   name: "Doc",
   setup() {
-    const asideVisible = inject<Ref<boolean>>('xxx'); //get
+    const asideVisible = inject<Ref<boolean>>('asideVisible'); //get
     console.log('获取doc的asideVisible: ' + asideVisible.value);
     return {
       asideVisible

@@ -13,8 +13,8 @@ import {inject, Ref} from 'vue';
 export default {
   name: 'Topnav',
   setup() {
-    const asideVisible = inject<Ref<boolean>>('xxx');
-    console.log('获取topnav的asideVisible: '+ asideVisible.value);
+    const asideVisible = inject<Ref<boolean>>('asideVisible');
+    console.log('获取topnav的 asideVisible: '+ asideVisible.value);
     const toggleMenu = () => {
       asideVisible.value = !asideVisible.value
     }
