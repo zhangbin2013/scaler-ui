@@ -1,6 +1,6 @@
 <template>
   <section class="topnav">
-    <div class="logo">LOGO</div>
+    <div class="logo" @click="toggleMenu">LOGO</div>
     <ul class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
@@ -9,8 +9,19 @@
 </template>
 
 <script lang="ts">
+import {inject, Ref} from 'vue';
 export default {
-  name: 'Topnav'
+  name: 'Topnav',
+  setup() {
+    const asideVisible = inject<Ref<boolean>>('xxx');
+    console.log('获取topnav的asideVisible: '+ asideVisible.value);
+    const toggleMenu = () => {
+      asideVisible.value = !asideVisible.value
+    }
+    return {
+      toggleMenu
+    }
+  }
 };
 </script>
 
@@ -25,6 +36,7 @@ export default {
   > .logo {
     max-width: 6em;
     margin-right: auto;
+    cursor: pointer;
   }
 
   > .menu {

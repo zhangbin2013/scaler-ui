@@ -2,13 +2,21 @@
   <section>
     <Topnav/>
     <div class="content">
-      <aside>
+      <aside v-if="asideVisible">
         <h2>组件列表</h2>
         <ol>
-          <li><router-link to="/doc/switch">Switch 组件</router-link></li>
-          <li><router-link to="/doc/button">Button 组件</router-link></li>
-          <li><router-link to="/doc/dialog">Dialog 组件</router-link></li>
-          <li><router-link to="/doc/tabs">Tabs 组件</router-link></li>
+          <li>
+            <router-link to="/doc/switch">Switch 组件</router-link>
+          </li>
+          <li>
+            <router-link to="/doc/button">Button 组件</router-link>
+          </li>
+          <li>
+            <router-link to="/doc/dialog">Dialog 组件</router-link>
+          </li>
+          <li>
+            <router-link to="/doc/tabs">Tabs 组件</router-link>
+          </li>
         </ol>
       </aside>
       <main>主内容</main>
@@ -18,26 +26,40 @@
 
 <script lang="ts">
 import Topnav from '../components/Topnav.vue';
+import {inject, Ref} from 'vue';
+
 export default {
-name: "Doc",
-  components: {Topnav}
+  name: "Doc",
+  setup() {
+    const asideVisible = inject<Ref<boolean>>('xxx'); //get
+    console.log('获取doc的asideVisible: ' + asideVisible.value);
+    return {
+      asideVisible
+    }
+  },
+  components: {
+    Topnav
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-aside{
+aside {
   background: lightblue;
   width: 150px;
   padding: 16px 0;
   position: fixed;
   top: 82px;
   left: 0;
-  >h2{
+
+  > h2 {
     margin-bottom: 4px;
   }
-  >ol{
+
+  > ol {
     padding: 0 22px;
-    >li{
+
+    > li {
       padding: 6px 0;
       list-style: none;
     }
