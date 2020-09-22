@@ -7,17 +7,21 @@
 <script lang="ts">
 export default {
 	name: 'Switch',
+	// props 值不允许修改
 	props: {
 		value: Boolean
 	},
 	setup(props, context) {
 		const butClick = () => {
-			context.emit('input', !props.value)
+			// this.$emit
+			// 1. 事件名称 2.$event
+			context.emit('update:value', !props.value)
 		}
 		return {
 			butClick
 		}
 	},
+	// vue3 几乎用不到， 主要使用setup(), components, props
 	methods: {}
 };
 </script>

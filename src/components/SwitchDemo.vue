@@ -1,6 +1,7 @@
 <template>
   <section>
-		<Switch :value="val" @input="val = $event"></Switch>
+		:value 和 @input 让父子组件进行交流（组件通信）
+		<Switch v-model:value="val"></Switch>
   </section>
 </template>
 
@@ -13,6 +14,7 @@ export default {
   	Switch
 	},
 	setup(){
+  	// 创建内部数据
   	const val = ref(false);
   	return {
   		val
