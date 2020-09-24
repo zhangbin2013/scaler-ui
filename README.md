@@ -19,3 +19,10 @@ cd xxx-name
 npm install
 npm run dev
 ```
+##note
+
+##### vue3 属性绑定
+- 默认所有属性都绑定到根元素
+- 使用inheritAttrs:false可以取消默认绑定
+- 使用$attrs或者context.attrs获取所有属性
+- 使用const{size, ...rest} = context.attrs将属性分开
