@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<button :class="{checked: value}" @click="butClick"><span></span></button>
+		<button class="sc-switch" :class="{'sc-checked': value}" @click="butClick"><span></span></button>
 	</div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
 <style lang='scss' scoped>
 $h: 22px;
 $h2: $h - 4px;
-button {
+.sc-switch {
 	height: $h;
 	width: $h * 2;
 	border: none;
@@ -48,7 +48,7 @@ button {
 		transition: all 250ms;
 	}
 
-	&.checked {
+	&.sc-checked {
 		background: #1890ff;
 
 		> span {
@@ -66,7 +66,7 @@ button {
 		}
 	}
 
-	&.checked:active {
+	&.sc-checked:active {
 		> span {
 			width: $h2 + 4px;
 			margin-left: -4px;

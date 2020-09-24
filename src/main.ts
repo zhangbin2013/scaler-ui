@@ -1,7 +1,10 @@
+import './lib/sc.scss';
+import 'normalize.css/normalize.css';
+import './index.scss';
+
 import {createApp} from 'vue';
 import App from './App.vue';
-import 'normalize.css/normalize.css';
-import './index.css';
+
 import {router} from "./router";
 
 const app = createApp(App)
