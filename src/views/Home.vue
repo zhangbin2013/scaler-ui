@@ -28,6 +28,7 @@ export default {
   align-content: center;
   flex-direction: column;
   background: lightgreen;
+	text-align: center;
 
   .empty {
     width: 100%;
