@@ -1,38 +1,18 @@
 <template>
-  <section>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-    <p>Dialog 文档</p>
-  </section>
+	<section>
+		<Dialog/>
+	</section>
 </template>
 
-<script>
+<script lang="ts">
+import Dialog from '../lib/Dialog.vue';
+
 export default {
-name: "Dialog"
-}
+	name: 'DialogDemo',
+	components: {Dialog}
+};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>
