@@ -2,9 +2,12 @@
 	<div class="sc-tabs">
 		<div class="sc-tabs-nav">
 			<div class="sc-tabs-nav-item" :class="{selected: title=== selected}"
+					 :ref="el => { if (el) navItems[index] = el }"
 					 @click="select(title)"
 					 v-for="(title,index) in titles">{{ title }}
 			</div>
+
+			<div class="sc-tabs-nav-indicator" ref="indicator"></div>
 		</div>
 		<div class="sc-tabs-content">
 			<component class="sc-tabs-content-item"
@@ -17,7 +20,7 @@
 
 <script lang="ts">
 import Tab from "./Tab.vue";
-
+import {ref, onMounted} from 'vue';
 export default {
 	name: "Tabs",
 	props: {
@@ -27,6 +30,15 @@ export default {
 	},
 	setup(props, context) {
 		console.log({...context.slots.default()})
+
+		const navItems = ref <HTMLDivElement[]>([]);
+		const indicator = ref<HTMLDivElement>(null);
+		onMounted(() => {
+			const divs = navItems.value;
+			const result = divs.filter(div => div.classList.contains('selected'))[0];
+			const {width} = result.getBoundingClientRect();
+			indicator.value.style.width = width + 'px';
+		});
 
 		const defaults = context.slots.default();
 		defaults.forEach(tag => {
@@ -42,7 +54,9 @@ export default {
 		return {
 			defaults,
 			titles,
-			select
+			select,
+			navItems,
+			indicator
 		}
 	}
 };
@@ -57,7 +71,15 @@ $border-color: #d9d9d9;
 		display: flex;
 		color: $color;
 		border-bottom: 1px solid $border-color;
-
+		position: relative;
+		&-indicator{
+			position: absolute;
+			height: 3px;
+			background: $blue;
+			left: 0;
+			bottom: -1px;
+			width: 100px;
+		}
 		&-item {
 			padding: 8px 0;
 			margin: 0 16px;
