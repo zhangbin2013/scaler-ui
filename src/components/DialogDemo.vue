@@ -3,7 +3,9 @@
 		<div>Dialog 示例</div>
 		<h1>示例1</h1>
 		<Button @click="toggle">toggle</Button>
-		<Dialog :visible="x"/>
+		<!--同时存在 :visible  和 @update:visible="x=$event 可替换为如下 v-model:visible"-->
+		<!--<Dialog :visible="x" @update:visible="x=$event"/>-->
+		<Dialog v-model:visible="x" :close-on-click-overlay="true" :ok="fn1" :cancel="fn2"/>
 	</section>
 </template>
 
@@ -21,9 +23,19 @@ export default {
 		const toggle = () => {
 			x.value = !x.value;
 		}
+
+		const fn1 = () => {
+			return false
+		}
+
+		const fn2 = () => {
+			return true
+		}
 		return {
 			x,
-			toggle
+			toggle,
+			fn1,
+			fn2
 		}
 	}
 };
