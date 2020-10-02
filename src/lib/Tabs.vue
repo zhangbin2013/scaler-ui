@@ -2,7 +2,7 @@
 	<div class="sc-tabs">
 		<div class="sc-tabs-nav" ref="container">
 			<div class="sc-tabs-nav-item" :class="{selected: title=== selected}"
-					 :ref="el => { if (el) navItems[index] = el }"
+					 :ref="el => { if (title===selected) selectedItem = el }"
 					 @click="select(title)"
 					 v-for="(title,index) in titles">{{ title }}
 			</div>
@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import Tab from "./Tab.vue";
-import {ref, onMounted, onUpdated} from 'vue';
+import {ref, onMounted, watchEffect} from 'vue';
 
 export default {
 	name: "Tabs",
@@ -32,30 +32,21 @@ export default {
 	setup(props, context) {
 		console.log({...context.slots.default()})
 
-		const navItems = ref<HTMLDivElement[]>([]);
+		const selectedItem = ref<HTMLDivElement>(null);
 		const indicator = ref<HTMLDivElement>(null);
 		const container = ref<HTMLDivElement>(null);
+
 		onMounted(() => {
-			const divs = navItems.value;
-			const result = divs.filter(div => div.classList.contains('selected'))[0];
-			const {width} = result.getBoundingClientRect();
-			indicator.value.style.width = width + 'px';
+			watchEffect(() => {
+				const {width} = selectedItem.value.getBoundingClientRect();
+				indicator.value.style.width = width + 'px';
 
-			const {left: left2} = container.value.getBoundingClientRect();
-			const {left: left1} = result.getBoundingClientRect();
-			indicator.value.style.left = left1 - left2 + 'px';
-		});
-
-		onUpdated(() => {
-			const divs = navItems.value;
-			const result = divs.filter(div => div.classList.contains('selected'))[0];
-			const {width} = result.getBoundingClientRect();
-			indicator.value.style.width = width + 'px';
-
-			const {left: left2} = container.value.getBoundingClientRect();
-			const {left: left1} = result.getBoundingClientRect();
-			indicator.value.style.left = left1 - left2 + 'px';
+				const {left: left2} = container.value.getBoundingClientRect();
+				const {left: left1} = selectedItem.value.getBoundingClientRect();
+				indicator.value.style.left = left1 - left2 + 'px';
+			});
 		})
+
 		const defaults = context.slots.default();
 		defaults.forEach(tag => {
 			if (tag.type !== Tab) {
@@ -70,7 +61,7 @@ export default {
 		return {
 			defaults,
 			titles,
-			navItems,
+			selectedItem,
 			indicator,
 			container,
 			select,
