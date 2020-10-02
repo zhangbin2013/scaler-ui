@@ -7,12 +7,16 @@
 		<!--<Dialog :visible="x" @update:visible="x=$event"/>-->
 		<Dialog
 			v-model:visible="x"
-			title="标题"
 			:close-on-click-overlay="true"
 			:ok="fn1"
 			:cancel="fn2">
-			<div>内容一</div>
-			<div>内容二</div>
+			<template v-slot:title>
+				<strong> 加粗标题</strong>
+			</template>
+			<template v-slot:content>
+				<div>内容一</div>
+				<div>内容二</div>
+			</template>
 		</Dialog>
 	</section>
 </template>
