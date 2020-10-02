@@ -1,8 +1,7 @@
 <template>
 	<div>
-		Tabs
-		<component :is="defaults[0]"/>
-		<component :is="defaults[1]"/>
+		<div v-for="(title,index) in titles">{{title}}</div>
+		<component v-for="(c,index) in defaults" :is="c" :key="index"/>
 	</div>
 </template>
 
@@ -20,8 +19,10 @@ export default {
 				throw new Error('子组件不是Tab');
 			}
 		})
+		const titles = defaults.map(d => d.props.title)
 		return {
-			defaults
+			defaults,
+			titles
 		}
 	}
 };
