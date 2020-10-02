@@ -10,9 +10,10 @@
 			<div class="sc-tabs-nav-indicator" ref="indicator"></div>
 		</div>
 		<div class="sc-tabs-content">
-			<component class="sc-tabs-content-item"
+			<!--<component class="sc-tabs-content-item"
 								 :class="{selected: c.props.title=== selected}"
-								 v-for="(c,index) in defaults" :is="c" :key="index"/>
+								 v-for="(c,index) in defaults" :is="c" :key="index"/>-->
+			<component :is="current" :key="selected"/>
 		</div>
 
 	</div>
@@ -20,7 +21,7 @@
 
 <script lang="ts">
 import Tab from "./Tab.vue";
-import {ref, onMounted, watchEffect} from 'vue';
+import {ref, onMounted, computed, watchEffect} from 'vue';
 
 export default {
 	name: "Tabs",
@@ -38,7 +39,7 @@ export default {
 
 		onMounted(() => {
 			watchEffect(() => {
-				const {width} = selectedItem.value.getBoundingClientRect();
+				const {width} = selectedItem.value.getBoundingClientRect(); // 获取元素位置
 				indicator.value.style.width = width + 'px';
 
 				const {left: left2} = container.value.getBoundingClientRect();
@@ -47,12 +48,17 @@ export default {
 			});
 		})
 
-		const defaults = context.slots.default();
+		const defaults = context.slots.default(); // js 获取插槽内容
 		defaults.forEach(tag => {
 			if (tag.type !== Tab) {
 				throw new Error('子组件不是Tab');
 			}
 		})
+
+		const current = computed(() => {
+			return defaults.find(tag => tag.props.title === props.selected)
+		})
+
 		const titles = defaults.map(d => d.props.title);
 
 		const select = (title) => {
@@ -60,6 +66,7 @@ export default {
 		}
 		return {
 			defaults,
+			current,
 			titles,
 			selectedItem,
 			indicator,
