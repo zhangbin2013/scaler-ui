@@ -2,11 +2,14 @@
 	<div class="sc-tabs">
 		<div class="sc-tabs-nav">
 			<div class="sc-tabs-nav-item" :class="{selected: title=== selected}"
+					 @click="select(title)"
 					 v-for="(title,index) in titles">{{ title }}
 			</div>
 		</div>
 		<div class="sc-tabs-content">
-			<component class="sc-tabs-content-item" v-for="(c,index) in defaults" :is="c" :key="index"/>
+			<component class="sc-tabs-content-item"
+								 :class="{selected: c.props.title=== selected}"
+								 v-for="(c,index) in defaults" :is="c" :key="index"/>
 		</div>
 
 	</div>
@@ -31,10 +34,15 @@ export default {
 				throw new Error('子组件不是Tab');
 			}
 		})
-		const titles = defaults.map(d => d.props.title)
+		const titles = defaults.map(d => d.props.title);
+
+		const select = (title) => {
+			context.emit('update:selected', title)
+		}
 		return {
 			defaults,
-			titles
+			titles,
+			select
 		}
 	}
 };
@@ -67,6 +75,15 @@ $border-color: #d9d9d9;
 
 	&-content {
 		padding: 8px 0;
+
+		&-item {
+			display: none;
+
+			&.selected {
+				display: block;
+			}
+		}
+
 	}
 }
 </style>
