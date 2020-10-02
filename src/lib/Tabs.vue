@@ -1,7 +1,9 @@
 <template>
 	<div class="sc-tabs">
 		<div class="sc-tabs-nav">
-			<div class="sc-tabs-nav-item" v-for="(title,index) in titles">{{ title }}</div>
+			<div class="sc-tabs-nav-item" :class="{selected: title=== selected}"
+					 v-for="(title,index) in titles">{{ title }}
+			</div>
 		</div>
 		<div class="sc-tabs-content">
 			<component class="sc-tabs-content-item" v-for="(c,index) in defaults" :is="c" :key="index"/>
@@ -15,6 +17,11 @@ import Tab from "./Tab.vue";
 
 export default {
 	name: "Tabs",
+	props: {
+		selected: {
+			type: String
+		}
+	},
 	setup(props, context) {
 		console.log({...context.slots.default()})
 
