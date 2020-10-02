@@ -1,7 +1,7 @@
 <template>
 	<template v-if="visible">
 		<!--#app | body-->
-		<Teleport to="#app">
+		<Teleport to="body">
 			<div class="sc-dialog-overlay" @click="onClickOverlay"></div>
 			<div class="sc-dialog-wrapper">
 				<div class="sc-dialog">
