@@ -2,22 +2,25 @@
 	<section>
 		<div>Dialog 示例</div>
 		<h1>示例1</h1>
-		<Button @click="toggle">toggle</Button>
-		<!--同时存在 :visible  和 @update:visible="x=$event 可替换为如下 v-model:visible"-->
-		<!--<Dialog :visible="x" @update:visible="x=$event"/>-->
-		<Dialog
-			v-model:visible="x"
-			:close-on-click-overlay="true"
-			:ok="fn1"
-			:cancel="fn2">
-			<template v-slot:title>
-				<strong> 加粗标题</strong>
-			</template>
-			<template v-slot:content>
-				<div>内容一</div>
-				<div>内容二</div>
-			</template>
-		</Dialog>
+		<div style="position: relative;z-index: 1">
+			<Button @click="toggle">toggle</Button>
+			<!--同时存在 :visible  和 @update:visible="x=$event 可替换为如下 v-model:visible"-->
+			<!--<Dialog :visible="x" @update:visible="x=$event"/>-->
+			<Dialog
+				v-model:visible="x"
+				:close-on-click-overlay="true"
+				:ok="fn1"
+				:cancel="fn2">
+				<template v-slot:title>
+					<strong> 加粗标题</strong>
+				</template>
+				<template v-slot:content>
+					<div>内容一</div>
+					<div>内容二</div>
+				</template>
+			</Dialog>
+		</div>
+		<div style="position: relative; z-index: 2; width: 300px; height: 300px; background: green;left: 50%"></div>
 	</section>
 </template>
 

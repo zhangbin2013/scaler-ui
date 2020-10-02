@@ -1,16 +1,19 @@
 <template>
 	<template v-if="visible">
-		<div class="sc-dialog-overlay" @click="onClickOverlay"></div>
-		<div class="sc-dialog-wrapper">
-			<div class="sc-dialog">
-				<header><slot name="title"/> <span class="sc-dialog-close" @click="close"></span></header>
-				<main><slot name="content"/></main>
-				<footer>
-					<Button @click="ok">ok</Button>
-					<Button @click="cancel">cancel</Button>
-				</footer>
+		<!--#app | body-->
+		<Teleport to="#app">
+			<div class="sc-dialog-overlay" @click="onClickOverlay"></div>
+			<div class="sc-dialog-wrapper">
+				<div class="sc-dialog">
+					<header><slot name="title"/> <span class="sc-dialog-close" @click="close"></span></header>
+					<main><slot name="content"/></main>
+					<footer>
+						<Button @click="ok">ok</Button>
+						<Button @click="cancel">cancel</Button>
+					</footer>
+				</div>
 			</div>
-		</div>
+		</Teleport>
 	</template>
 </template>
 
