@@ -1,6 +1,6 @@
 <template>
 	<div class="sc-tabs">
-		<div class="sc-tabs-nav">
+		<div class="sc-tabs-nav" ref="container">
 			<div class="sc-tabs-nav-item" :class="{selected: title=== selected}"
 					 :ref="el => { if (el) navItems[index] = el }"
 					 @click="select(title)"
@@ -20,7 +20,8 @@
 
 <script lang="ts">
 import Tab from "./Tab.vue";
-import {ref, onMounted} from 'vue';
+import {ref, onMounted, onUpdated} from 'vue';
+
 export default {
 	name: "Tabs",
 	props: {
@@ -31,15 +32,30 @@ export default {
 	setup(props, context) {
 		console.log({...context.slots.default()})
 
-		const navItems = ref <HTMLDivElement[]>([]);
+		const navItems = ref<HTMLDivElement[]>([]);
 		const indicator = ref<HTMLDivElement>(null);
+		const container = ref<HTMLDivElement>(null);
 		onMounted(() => {
 			const divs = navItems.value;
 			const result = divs.filter(div => div.classList.contains('selected'))[0];
 			const {width} = result.getBoundingClientRect();
 			indicator.value.style.width = width + 'px';
+
+			const {left: left2} = container.value.getBoundingClientRect();
+			const {left: left1} = result.getBoundingClientRect();
+			indicator.value.style.left = left1 - left2 + 'px';
 		});
 
+		onUpdated(() => {
+			const divs = navItems.value;
+			const result = divs.filter(div => div.classList.contains('selected'))[0];
+			const {width} = result.getBoundingClientRect();
+			indicator.value.style.width = width + 'px';
+
+			const {left: left2} = container.value.getBoundingClientRect();
+			const {left: left1} = result.getBoundingClientRect();
+			indicator.value.style.left = left1 - left2 + 'px';
+		})
 		const defaults = context.slots.default();
 		defaults.forEach(tag => {
 			if (tag.type !== Tab) {
@@ -54,9 +70,10 @@ export default {
 		return {
 			defaults,
 			titles,
-			select,
 			navItems,
-			indicator
+			indicator,
+			container,
+			select,
 		}
 	}
 };
@@ -72,14 +89,17 @@ $border-color: #d9d9d9;
 		color: $color;
 		border-bottom: 1px solid $border-color;
 		position: relative;
-		&-indicator{
+
+		&-indicator {
 			position: absolute;
 			height: 3px;
 			background: $blue;
 			left: 0;
 			bottom: -1px;
 			width: 100px;
+			transition: all 250ms;
 		}
+
 		&-item {
 			padding: 8px 0;
 			margin: 0 16px;
