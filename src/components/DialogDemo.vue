@@ -5,7 +5,15 @@
 		<Button @click="toggle">toggle</Button>
 		<!--同时存在 :visible  和 @update:visible="x=$event 可替换为如下 v-model:visible"-->
 		<!--<Dialog :visible="x" @update:visible="x=$event"/>-->
-		<Dialog v-model:visible="x" :close-on-click-overlay="true" :ok="fn1" :cancel="fn2"/>
+		<Dialog
+			v-model:visible="x"
+			title="标题"
+			:close-on-click-overlay="true"
+			:ok="fn1"
+			:cancel="fn2">
+			<div>内容一</div>
+			<div>内容二</div>
+		</Dialog>
 	</section>
 </template>
 

@@ -3,9 +3,8 @@
 		<div class="sc-dialog-overlay" @click="onClickOverlay"></div>
 		<div class="sc-dialog-wrapper">
 			<div class="sc-dialog">
-				<header>标题 <span class="sc-dialog-close" @click="close"></span></header>
-				<main><p>第一行</p>
-					<p>第二话</p></main>
+				<header>{{ title }} <span class="sc-dialog-close" @click="close"></span></header>
+				<main><slot/></main>
 				<footer>
 					<Button @click="ok">ok</Button>
 					<Button @click="cancel">cancel</Button>
@@ -21,6 +20,10 @@ import Button from "./Button.vue";
 export default {
 	name: "Dialog",
 	props: {
+		title: {
+			type: String,
+			default: '提示'
+		},
 		visible: {
 			type: Boolean,
 			default: false
