@@ -8,9 +8,6 @@ import TabsDemo from './components/TabsDemo.vue';
 import DialogDemo from './components/DialogDemo.vue';
 import DocDemo from './components/DocDemo.vue';
 import Markdown from './components/Markdown.vue';
-import Intro from './views/Intro.vue';
-import GetStarted from './views/GetStarted.vue';
-import Install from './views/Install.vue';
 
 const history = createWebHashHistory();
 
