@@ -1,29 +1,41 @@
 <template>
-  <section>
-    <Topnav toggle-menu-button-visible/>
-    <div class="content">
-      <aside v-if="asideVisible">
-        <h2>组件列表</h2>
-        <ol>
-          <li>
-            <router-link to="/doc/switch">Switch 组件</router-link>
-          </li>
-          <li>
-            <router-link to="/doc/button">Button 组件</router-link>
-          </li>
-          <li>
-            <router-link to="/doc/dialog">Dialog 组件</router-link>
-          </li>
-          <li>
-            <router-link to="/doc/tabs">Tabs 组件</router-link>
-          </li>
-        </ol>
-      </aside>
-      <main>
-        <router-view/>
-      </main>
-    </div>
-  </section>
+	<section class="layout">
+		<Topnav toggle-menu-button-visible class="nav"/>
+		<div class="content">
+			<aside v-if="asideVisible">
+				<h2>文档</h2>
+				<ol>
+					<li>
+						<router-link to="/doc/intro">介绍</router-link>
+					</li>
+					<li>
+						<router-link to="/doc/install">安装</router-link>
+					</li>
+					<li>
+						<router-link to="/doc/get-started">开始使用</router-link>
+					</li>
+				</ol>
+				<h2>组件列表</h2>
+				<ol>
+					<li>
+						<router-link to="/doc/switch">Switch 组件</router-link>
+					</li>
+					<li>
+						<router-link to="/doc/button">Button 组件</router-link>
+					</li>
+					<li>
+						<router-link to="/doc/dialog">Dialog 组件</router-link>
+					</li>
+					<li>
+						<router-link to="/doc/tabs">Tabs 组件</router-link>
+					</li>
+				</ol>
+			</aside>
+			<main>
+				<router-view/>
+			</main>
+		</div>
+	</section>
 </template>
 
 <script lang="ts">
@@ -31,55 +43,87 @@ import Topnav from '../components/Topnav.vue';
 import {inject, Ref} from 'vue';
 
 export default {
-  name: "Doc",
-  setup() {
-    const asideVisible = inject<Ref<boolean>>('asideVisible'); //get
-    console.log('获取doc的asideVisible: ' + asideVisible.value);
-    return {
-      asideVisible
-    }
-  },
-  components: {
-    Topnav
-  }
+	name: "Doc",
+	setup() {
+		const asideVisible = inject<Ref<boolean>>('asideVisible'); //get
+		console.log('获取doc的asideVisible: ' + asideVisible.value);
+		return {
+			asideVisible
+		}
+	},
+	components: {
+		Topnav
+	}
 }
 </script>
 
 <style lang="scss" scoped>
+$aside-index: 10;
+.layout {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+
+	> .nav {
+		flex-shrink: 0;
+	}
+
+	> .content {
+		flex-grow: 1;
+		padding-top: 60px;
+		padding-left: 156px;
+		@media (max-width: 500px) {
+			padding-left: 0;
+		}
+	}
+}
+
 .content {
-  display: flex;
-  height: calc(100vh - 50px);
-  overflow: hidden;
+	display: flex;
 
-  aside {
-    background: lightblue;
-    width: 150px;
-    padding: 16px 0;
+	> aside {
+		flex-shrink: 0;
+	}
 
-    > h2 {
-      margin-bottom: 4px;
-    }
+	> main {
+		flex-grow: 1;
+		padding: 16px;
+		background: white;
+	}
+}
 
-    > ol {
-      padding: 0 22px;
+aside {
+	background: lightblue;
+	width: 150px;
+	padding: 16px 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding-top: 70px;
+	height: 100%;
+	z-index: $aside-index;
 
-      > li {
-        padding: 6px 0;
-        list-style: none;
-      }
-    }
+	> h2 {
+		margin-bottom: 4px;
+		padding: 0 16px;
+	}
 
-    @media (max-width: 500px) {
-      position: fixed;
-      top: 50px;
-      left: 0;
-      height: 100%;
-    }
-  }
+	> ol {
+		> li {
+			> a {
+				display: block;
+				padding: 4px 16px;
+				text-decoration: none;
+			}
 
-  main {
-    flex: 1;
-    overflow: auto;
-  }
+			.router-link-active {
+				background: white;
+			}
+		}
+	}
+}
+
+main {
+	overflow: auto;
 }
 </style>
