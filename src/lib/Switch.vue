@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<button class="sc-switch" :class="{'sc-checked': value}" @click="butClick"><span></span></button>
+		<button class="sc-switch" :class="{'sc-checked': value}" :disabled="disabled" @click="butClick"><span></span></button>
 	</div>
 </template>
 
@@ -9,7 +9,11 @@ export default {
 	name: 'Switch',
 	// props 值不允许修改
 	props: {
-		value: Boolean
+		value: Boolean,
+		disabled: {
+			type: Boolean,
+			default: false
+		}
 	},
 	setup(props, context) {
 		const butClick = () => {
