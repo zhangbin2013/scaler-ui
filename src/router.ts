@@ -6,7 +6,6 @@ import SwitchDemo from './components/SwitchDemo.vue';
 import ButtonDemo from './components/ButtonDemo.vue';
 import TabsDemo from './components/TabsDemo.vue';
 import DialogDemo from './components/DialogDemo.vue';
-import DocDemo from './components/DocDemo.vue';
 import Markdown from './components/Markdown.vue';
 
 const history = createWebHashHistory();
@@ -16,9 +15,9 @@ const md = filename => h(Markdown, {path: `../markdown/${filename}.md`, key: fil
 const routes = [
 	{path: '/', component: Home},
 	{
-		path: '/doc', component: Doc, children:
-			[
-				{path: '', component: DocDemo},
+		path: '/doc', component: Doc,
+		children: [
+				{path: '', redirect: '/doc/intro'},
 				{path: 'intro', component: md('intro')},
 				{path: 'get-started', component: md('get-started')},
 				{path: 'install', component: md('install')},

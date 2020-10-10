@@ -49,7 +49,7 @@ $color: #007974;
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: 20;
+	z-index: 10;
 	justify-content: center;
 	align-items: center;
 	>.logo {
