@@ -36,8 +36,6 @@ console.log(Switch1Demo)
 import {ref} from 'vue'
 export default {
 	components: {
-		Switch1Demo,
-		Switch2Demo,
 		Button
 	},
 	setup() {
