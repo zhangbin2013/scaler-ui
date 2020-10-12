@@ -12,11 +12,11 @@ const history = createWebHashHistory();
 
 const md = filename => h(Markdown, {path: `../markdown/${filename}.md`, key: filename});
 
-const routes = [
-	{path: '/', component: Home},
-	{
-		path: '/doc', component: Doc,
-		children: [
+export const router = createRouter({history, routes: [
+		{path: '/', component: Home},
+		{
+			path: '/doc', component: Doc,
+			children: [
 				{path: '', redirect: '/doc/intro'},
 				{path: 'intro', component: md('intro')},
 				{path: 'get-started', component: md('get-started')},
@@ -26,5 +26,8 @@ const routes = [
 				{path: 'dialog', component: DialogDemo},
 				{path: 'tabs', component: TabsDemo},
 			]
-	}];
-export const router = createRouter({history, routes});
+}]});
+
+router.afterEach(() => {
+	console.log('路由切换成功');
+})
