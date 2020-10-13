@@ -45,7 +45,7 @@ export default {
 				const {left: left2} = container.value.getBoundingClientRect();
 				const {left: left1} = selectedItem.value.getBoundingClientRect();
 				indicator.value.style.left = left1 - left2 + 'px';
-			});
+			},{flush: 'post'});
 		})
 
 		const defaults = context.slots.default(); // js 获取插槽内容
