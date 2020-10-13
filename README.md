@@ -21,6 +21,29 @@ npm run dev
 ```
 ##note
 
+### 上传github 命令
+上传
+```
+cd dist
+git init
+git add .
+git commit -m "first commit"
+git branch -M master
+git remote add origin git@github.com:zhangbin2013/sc-ui-website.git
+git push -u origin master
+```
+
+修改上传
+```
+cd dist
+git init
+git add .
+git commit -m "first commit"
+git branch -M master
+git remote add origin git@github.com:zhangbin2013/sc-ui-website.git
+git push -f -u origin master
+```
+
 ##### vue3 属性绑定
 - 默认所有属性都绑定到根元素
 - 使用inheritAttrs:false可以取消默认绑定
