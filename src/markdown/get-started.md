@@ -5,6 +5,7 @@
 
 ```
 import {Button, Tabs, Switch, Dialog} from "@zhang_bin/sc-ui"
+import '@zhang_bin/sc-ui/dist/lib/sc-ui.css'
 ```
 
 就可以使用我提供的组件了。
