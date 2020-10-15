@@ -4,7 +4,7 @@
 然后在你的代码中写入下面的代码
 
 ```
-import {Button, Tabs, Switch, Dialog} from "sc-ui"
+import {Button, Tabs, Switch, Dialog} from "@zhang_bin/sc-ui"
 ```
 
 就可以使用我提供的组件了。
@@ -20,7 +20,9 @@ import {Button, Tabs, Switch, Dialog} from "sc-ui"
   </div>
 </template>
 <script>
-import {Button, Tabs, Switch, Dialog} from "sc-ui"
+import {Button, Tabs, Switch, Dialog} from "@zhang_bin/sc-ui"
+import '@zhang_bin/sc-ui/dist/lib/sc-ui.css'
+
 export default {
   components: {Button}
 }
