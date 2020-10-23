@@ -4,7 +4,7 @@
 			<Topnav />
 			<div class="banner">
 				<h1>Scaler-UI</h1>
-				<h2>一个不错的 UI 框架</h2>
+				<h2>一款经典的 UI 框架</h2>
 				<p class="actions">
 					<a href="https://github.com/zhangbin2013/sc-ui-website" target="_blank">GitHub</a>
 					<router-link to="/doc">开始</router-link>
@@ -123,6 +123,11 @@ $color: #007974;
 				text-decoration: none;
 			}
 		}
+	}
+	> h2{
+		background: -webkit-linear-gradient(180deg, rgba(145, 189, 186, .8) 27%, $color 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
 }
 </style>
