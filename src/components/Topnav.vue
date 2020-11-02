@@ -4,6 +4,7 @@
 			<svg class="icon">
 				<use xlink:href="#icon-home"></use>
 			</svg>
+			<div>Scaler UI</div>
 		</router-link>
 		<ul class="menu">
 			<li>
@@ -53,11 +54,18 @@ $color: #007974;
 	justify-content: center;
 	align-items: center;
 	>.logo {
-		max-width: 6em;
+		max-width: 10em;
 		margin-right: auto;
+		display: flex;
+		align-items: center;
 		>svg {
 			width: 32px;
 			height: 32px;
+		}
+		>div{
+			font-weight: bold;
+			font-size: 22px;
+			margin-left: 5px;
 		}
 	}
 	>.menu {
