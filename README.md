@@ -1,51 +1,18 @@
-# scaler-ui
-###ui 组件库搭建
+scaler-ui 使用方式
+---------
 
-### 搭建方式
- 全局安装 create-vite-app
-  ```
-  yarn global add create-vite-app@1.18.0
-  npm i -g create-vite-app@1.18.0
-  ```
-### 创建项目目录
+### 下载
+```javascript
+npm install @zhang_bin/sc-ui
+```
+或
+```javascript
+yarn add @zhang_bin/sc-ui
+```
+
+### 使用
+ ```javascript
+ import {Button, Tabs, Switch, Dialog} from "@zhang_bin/sc-ui"
+ import '@zhang_bin/sc-ui/dist/lib/sc-ui.css'
  ```
-cva xxx-name
-crate-vite-app xxx-name
-```
-
-### 运行项目
-```
-cd xxx-name
-npm install
-npm run dev
-```
-##note
-
-### 上传github 命令
-上传
-```
-cd dist
-git init
-git add .
-git commit -m "first commit"
-git branch -M master
-git remote add origin git@github.com:zhangbin2013/sc-ui-website.git
-git push -u origin master
-```
-
-修改上传
-```
-cd dist
-git init
-git add .
-git commit -m "first commit"
-git branch -M master
-git remote add origin git@github.com:zhangbin2013/sc-ui-website.git
-git push -f -u origin master
-```
-
-##### vue3 属性绑定
-- 默认所有属性都绑定到根元素
-- 使用inheritAttrs:false可以取消默认绑定
-- 使用$attrs或者context.attrs获取所有属性
-- 使用const{size, ...rest} = context.attrs将属性分开
+[使用文档](https://zhangbin2013.github.io/sc-ui-website/#/)
