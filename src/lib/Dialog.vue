@@ -6,7 +6,7 @@
 			<div class="sc-dialog-wrapper">
 				<div class="sc-dialog">
 					<header><slot name="title"/> <span class="sc-dialog-close" @click="close"></span></header>
-					<main><slot name="content"/></main>
+					<main><slot name="l"/></main>
 					<footer>
 						<Button @click="ok">ok</Button>
 						<Button @click="cancel">cancel</Button>

@@ -7,6 +7,7 @@ export const openDialog = (options) => {
 	document.body.append(div);
 
 	const close = () => {
+		// @ts-ignore
 		app.unmount(div);
 		div.remove();
 	};
