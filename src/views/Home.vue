@@ -6,7 +6,7 @@
 				<h1>Scaler-UI</h1>
 				<h2>一款经典的 UI 框架</h2>
 				<p class="actions">
-					<a href="https://github.com/zhangbin2013/sc-ui-website" target="_blank">GitHub</a>
+					<a href="https://github.com/zhangbin2013/scaler-ui" target="_blank">GitHub</a>
 					<router-link to="/doc">开始</router-link>
 				</p>
 			</div>
